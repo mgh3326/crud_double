@@ -1,0 +1,27 @@
+<div class="container">
+  <% @post.each do |post| %>
+    <div class="post">
+      <h1>
+        <%= post.title %></h1>
+      <div class="edit"><a href="/home/update_form/<%= post.id %>">수정</a></div>
+      <div class="delete"><a href="/home/delete/<%= post.id %>">삭제</a></div>
+      <div style="text-align: right"><%= post.author %></div>
+      <hr>
+      <%= post.content %>
+    </div>
+  <% end %>
+  <a href="/home/create_form">글쓰기</a>
+</div>
+<style>
+  .post {
+    border: 1px solid;
+    margin: 30px auto;
+    max-width: 1000px;
+    border-radius: 5px;
+    padding: 40px;
+  }
+
+  .edit {
+    float: left
+  }
+</style>
