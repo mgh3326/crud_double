@@ -8,12 +8,24 @@
       <div style="text-align: right"><%= post.author %></div>
       <hr>
       <%= post.content %>
+      <hr>
+      <% post.replies.each do |reply| %>
+        <div class="reply">
+          <%= reply.content %>
+          <div class="edit_reply"><a href="reply/update_form/<%= reply.id %>">수정</a>
+            <a href="reply/delete/<%= reply.id %>">삭제</a></div>
+        </div>
+      <% end %>
     </div>
+    <form action="/reply/create/<%= post.id %>" method="post">
+      <textarea name="content" class="form-control"></textarea>
+      <input type="submit" class="btn btn-default">
+    </form>
   <% end %>
   <a href="/home/create_form">글쓰기</a>
 </div>
 <style>
-  .post {
+  .post .reply {
     border: 1px solid;
     margin: 30px auto;
     max-width: 1000px;
@@ -23,5 +35,9 @@
 
   .edit {
     float: left
+  }
+
+  .edit_reply {
+    float: right
   }
 </style>
